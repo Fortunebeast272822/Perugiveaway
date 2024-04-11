@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es"> <!-- Changed language to Spanish -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Recibos de Pago</title> <!-- Updated title to Spanish -->
+    <style>
+        /* Container styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input styles */
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Button styles */
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Receipt styles */
+        .receipt {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            position: relative;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff; /* Change background color to white */
+        }
+
+        .receipt h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #007bff;
+            font-size: 20px;
+        }
+
+        .receipt p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .status {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Bank logo styles */
+        .bank-logo {
+            width: 50px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Download button styles */
+        .download-button {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <label for="accountNumber">Número de Cuenta:</label> <!-- Changed label to Spanish -->
+    <input type="text" id="accountNumber">
+
+    <label for="amount">Monto (en SOL):</label> <!-- Changed label to Spanish -->
+    <input type="text" id="amount">
+
+    <button onclick="generateReceipt()">Generar Recibo</button> <!-- Changed button text to Spanish -->
+</div>
+
+<div class="receipt" id="receipt">
+    <img class="bank-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Yape_logo.svg/1200px-Yape_logo.svg.png" alt="Logotipo de Yape">
+    <h2>Recibo</h2> <!-- Changed heading to Spanish -->
+    <p id="receiptTransactionId"></p>
+    <p id="receiptTime"></p>
+    <p id="receiptAmount"></p>
+    <p id="receiptAccountNumber"></p>
+    <p class="status">Estado: Pendiente</p> <!-- Changed status to Spanish -->
+    <button class="download-button" onclick="downloadReceipt()">Descargar Recibo</button> <!-- Changed button text to Spanish -->
+</div>
+
+<script>
+    function generateReceipt() {
+        var accountNumber = document.getElementById('accountNumber').value;
+        var amount = document.getElementById('amount').value;
+
+        var receiptTransactionId = document.getElementById('receiptTransactionId');
+        var receiptTime = document.getElementById('receiptTime');
+        var receiptAmount = document.getElementById('receiptAmount');
+        var receiptAccountNumber = document.getElementById('receiptAccountNumber');
+        var receiptStatus = document.querySelector('.status');
+        var receiptDiv = document.getElementById('receipt');
+
+        // Generate random transaction ID
+        var transactionId = Math.floor(100000 + Math.random() * 900000);
+        
+        // Get current time
+        var currentTime = new Date().toLocaleString();
+
+        receiptTransactionId.textContent = "ID de Transacción: " + transactionId; // Changed label to Spanish
+        receiptTime.textContent = "Hora: " + currentTime; // Changed label to Spanish
+        receiptAmount.textContent = "Monto (SOL): " + amount; // Changed label to Spanish
+        receiptAccountNumber.textContent = "Número de Cuenta: " + accountNumber; // Changed label to Spanish
+        receiptStatus.textContent = "Estado: Pendiente"; // Changed status to Spanish
+
+        receiptDiv.style.display = 'block';
+    }
+
+    function downloadReceipt() {
+        // Add logic to download the receipt
+        // You can use JavaScript to create a file or open a printable version of the receipt
+        // For simplicity, let's just alert a message for now
+        alert("Descargando recibo..."); // Changed alert message to Spanish
+    }
+</script>
+
+</body>
+</html>
